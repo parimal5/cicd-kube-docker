@@ -6,6 +6,10 @@ pipeline {
         REGISTERY_CREDENTIALS= "dockerhub" //Credential in Jenkins Id- dockerhub (docker username and password)
     }
 
+    // Docker is installed in Jenkins node
+    // Helm is installed in kops
+    // So we can directely used Docker but for helm we are using the slave node to trigger the job
+
     stages{
         stage('BUILD'){
             steps {
@@ -18,7 +22,6 @@ pipeline {
                 }
             }
         }
-
         stage('UNIT TEST'){
             steps {
                 sh 'mvn test'
